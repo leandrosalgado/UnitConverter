@@ -13,6 +13,12 @@ namespace UnitConverter
         /// <param name="to">Unit to (e.g.: meters, feet, inches)</param>
         /// <returns></returns>
         public bool CanConvert(string from, string to);
+        /// <summary>
+        /// Converts value to the chosen unit type.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public string Convert(UnitValue value, string to);
     }
 }

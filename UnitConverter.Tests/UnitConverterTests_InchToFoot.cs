@@ -14,8 +14,8 @@ namespace UnitConverter.Tests
         public void Convert_KiloinchesToFoot()
         {
             var result = UnitConverter.Convert("100 kiloinches", "feet");
-            
-            Assert.AreEqual(Math.Round((resultValue * 1000), 2) + " feet", result);
+            var expectedValue = Math.Round((resultValue * 1000), 2) + " feet";
+            Assert.IsTrue(String.Equals(expectedValue, result, StringComparison.InvariantCultureIgnoreCase));
         }
         [TestMethod]
         public void Convert_InchToFoot()
@@ -28,7 +28,8 @@ namespace UnitConverter.Tests
         public void Convert_CentiinchToFoot()
         {
             var result = UnitConverter.Convert("100 centiinches", "feet");
-            Assert.AreEqual(Math.Round((resultValue * 0.01M), 2) + " foot", result);
+            var expectedResult = Math.Round((resultValue * 0.01M), 2) + " foot";
+            Assert.IsTrue(string.Equals(expectedResult, result, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }
