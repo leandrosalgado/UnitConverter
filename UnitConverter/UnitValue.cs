@@ -35,7 +35,7 @@ namespace UnitConverter
                 UnitText = auxArray[auxArray.Length - 1];
             } else // If it isn't possible to map the input to the properties an exception is thrown
             {
-                throw new ConversionNotSupported();
+                throw new ConversionNotSupportedException();
             }
         }
     }

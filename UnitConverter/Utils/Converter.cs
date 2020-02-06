@@ -10,7 +10,7 @@ namespace UnitConverter.Utils
     /// </summary>
     static class Converter
     {
-        private static List<IConverter> _converters;
+        private static List<IConverter> Converters;
         /// <summary>
         /// Initialize the list of converters when this class used for the first time. 
         /// </summary>
@@ -18,14 +18,15 @@ namespace UnitConverter.Utils
         {
             var type = typeof(IConverter);
             // add converters whithin the library to our private array
-            _converters = typeof(UnitConverter).Assembly
+            Converters = typeof(UnitConverter).Assembly
                 .GetTypes()
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
                 .Select(t => (IConverter)Activator.CreateInstance(t))
                 .ToList();
         }
         /// <summary>
-        /// Retrieves converter. Example: Utils.Converter("metre", "feet") => returns the first Converter which is capable of converting these units.
+        /// Retrieves converter. 
+        /// Example: Utils.Converter("metre", "feet") => returns the first Converter which is capable of converting these units.
         ///
         /// </summary>
         /// <param name="fromUnit">Unit which will be converted</param>
@@ -34,7 +35,7 @@ namespace UnitConverter.Utils
         public static IConverter GetConverter(string fromUnit, string toUnit)
         {
             // For simplification I'm considering only the first converter. The code could return a list of converters, though.
-            return _converters.FirstOrDefault(c => c.CanConvert(fromUnit, toUnit));
+            return Converters.FirstOrDefault(c => c.CanConvert(fromUnit, toUnit));
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace UnitConverter.Utils
         /// <param name="converter"></param>
         public static void RegisterConverter(IConverter converter)
         {
-            _converters.Add(converter);
+            Converters.Add(converter);
         }
         /// <summary>
         /// Unregister converter
@@ -51,10 +52,10 @@ namespace UnitConverter.Utils
         /// <param name="converter"></param>
         public static void UnregisterConverter(IConverter converter)
         {
-            var foundConverter = _converters.FirstOrDefault(c => c.GetType() == converter.GetType());
+            var foundConverter = Converters.FirstOrDefault(c => c.GetType() == converter.GetType());
             if(foundConverter != null)
             {
-                _converters.Remove(foundConverter);
+                Converters.Remove(foundConverter);
             }
         }
 

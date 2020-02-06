@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace UnitConverter.Converters
 {
@@ -60,14 +61,23 @@ namespace UnitConverter.Converters
         public string Convert(UnitValue from, string to)
         {
             if (string.IsNullOrWhiteSpace(to)) return "";
-            double.TryParse(from.Value, out var value);
+            if(!double.TryParse(from.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
+            {
+                throw new ConversionNotSupportedException();
+            }
+
             if (value == 0) return FomartOutput(value, to);
+
+
             var formula = GetFormula(from.UnitText, to);
+            
             if(formula == null)
             {
-                throw new ConversionNotSupported();
+                throw new ConversionNotSupportedException();
             }
+            
             var result = formula(value);
+
             return FomartOutput(result, to);
         }
 

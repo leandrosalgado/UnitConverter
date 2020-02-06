@@ -28,8 +28,8 @@ namespace UnitConverter
                 throw new ArgumentException("Invalid parameter value.", nameof(to));
             }
             // Extract units from parameter
-            var fromUnit = new UnitValue(_FormatInputString(from));
-            var toUnit = _FormatInputString(to);
+            var fromUnit = new UnitValue(FormatInputString(from));
+            var toUnit = FormatInputString(to);
 
             // Retrieves converter instance
             var converter = Utils.Converter.GetConverter(fromUnit.UnitText, toUnit);
@@ -68,7 +68,7 @@ namespace UnitConverter
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private static string _FormatInputString(string value)
+        private static string FormatInputString(string value)
         {
             return value?.ToLower().Trim();
         }

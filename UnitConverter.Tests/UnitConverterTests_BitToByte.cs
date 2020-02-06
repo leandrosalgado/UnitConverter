@@ -25,7 +25,9 @@ namespace UnitConverter.Tests
         public void Convert_Bits_To_gigabyte()
         {
             var result = UnitConverter.Convert("3000000000000 bits", "gigabyte");
-            Assert.AreEqual("349.25 gigabytes", result);
+
+
+            Assert.IsTrue(string.Equals("349.25 gigabytes", result, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

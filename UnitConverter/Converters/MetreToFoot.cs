@@ -13,7 +13,7 @@ namespace UnitConverter.Converters
     {
         private List<string> _supportedUnits = new List<string>() { "metre", "metres", "foot", "feet" };
 
-        Dictionary<string, Func<double, double>> _formulaTable = new Dictionary<string, Func<double, double>>()
+        private Dictionary<string, Func<double, double>> _formulaTable = new Dictionary<string, Func<double, double>>(StringComparer.InvariantCultureIgnoreCase)
         {
             // feet
             {"feet|metres", (value) => value * 0.3048 },

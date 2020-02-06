@@ -29,8 +29,8 @@ namespace UnitConverter.Tests
         [TestMethod]
         public void Convert_Invalid_Formula()
         {
-            Assert.ThrowsException<ConversionNotSupported>(() => UnitConverter.Convert("3000000000000 fdsfsdfbit", "bbyte"));
-            Assert.ThrowsException<ConversionNotSupported>(() => UnitConverter.Convert("3000000000000 dbit", "bbyte"));
+            Assert.ThrowsException<ConversionNotSupportedException>(() => UnitConverter.Convert("3000000000000 fdsfsdfbit", "bbyte"));
+            Assert.ThrowsException<ConversionNotSupportedException>(() => UnitConverter.Convert("3000000000000 dbit", "bbyte"));
         }
     }
 }
