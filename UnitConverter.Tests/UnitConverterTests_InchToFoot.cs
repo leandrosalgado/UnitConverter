@@ -3,6 +3,7 @@ using UnitConverter;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace UnitConverter.Tests
 {
@@ -14,7 +15,7 @@ namespace UnitConverter.Tests
         public void Convert_KiloinchesToFoot()
         {
             var result = UnitConverter.Convert("100 kiloinches", "feet");
-            var expectedValue = Math.Round((resultValue * 1000), 2) + " feet";
+            var expectedValue = Math.Round((resultValue * 1000), 2).ToString("0.00", CultureInfo.InvariantCulture) + " feet";
             Assert.IsTrue(String.Equals(expectedValue, result, StringComparison.InvariantCultureIgnoreCase));
         }
         [TestMethod]
@@ -28,7 +29,7 @@ namespace UnitConverter.Tests
         public void Convert_CentiinchToFoot()
         {
             var result = UnitConverter.Convert("100 centiinches", "feet");
-            var expectedResult = Math.Round((resultValue * 0.01M), 2) + " foot";
+            var expectedResult = Math.Round((resultValue * 0.01M), 2).ToString("0.00", CultureInfo.InvariantCulture) + " foot";
             Assert.IsTrue(string.Equals(expectedResult, result, StringComparison.InvariantCultureIgnoreCase));
         }
     }
