@@ -114,7 +114,7 @@ namespace UnitConverter.Converters
             bool isPlural = value > 1;
             string unitPrefix;
             unitPrefix = isPlural ? GetPlural(to) : GetSingular(to);
-            return $"{Math.Round(value, 2).ToString("0.00")} {unitPrefix}";
+            return $"{Math.Round(value, 2).ToString("0.00", CultureInfo.InvariantCulture)} {unitPrefix}";
         }
     }
 }
